@@ -1,7 +1,6 @@
 const express = require('express')
 const morgan = require('morgan')
 const authRoutes = require('./routes/auth')
-// const randGenerator = require('./randomGenerator')
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser')
@@ -30,7 +29,6 @@ app.use(cookieParser())
 
 if(process.env.NODE_ENV === 'development')
 {
-
     app.use(cors({origin: process.env.CLIENT_URL}))
 }
 
