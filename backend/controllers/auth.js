@@ -3,27 +3,27 @@ const jwt = require('jsonwebtoken')
 const expressJwt = require('express-jwt')
 
 exports.signup = (req, res) => {
-    User.findOne({email:req.body.email}).exec((err, user) => {
+    User.findOne({email:req.body.email})
+        .exec((err, user) => {
         if(user){
             return res.status(400).json({
                 error: 'Email already exists'
             })
-        }
-    })
-
-    const {email, password} = req.body;
-    let newUser = new User({email:email, password})
-    newUser.save((err, success) => {
-        if(err){
-            return res.status(400).json({
-                error: err
+        } else {
+            const {email, password} = req.body;
+            let newUser = new User({email:email, password})
+            newUser.save((err, user) => {
+                if(err){
+                    return res.status(400).json({
+                        error: err
+                    })
+                }
+                return res.json({
+                    message: "Signup success! Please login."
+                })
             })
         }
-        return res.json({
-            message: "Signup success! Please login."
-        })
     })
-
 };
 
 exports.login = (req, res) => {

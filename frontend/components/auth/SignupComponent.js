@@ -1,5 +1,7 @@
 import React, {useState} from 'react'
 import {signup} from '../../actions/auth'
+import {Alert} from 'reactstrap'
+
 const SignupComponenet = () => {
 
     const [values, setValues] = useState({
@@ -9,6 +11,7 @@ const SignupComponenet = () => {
         message: '',
         showForm: true
     });
+
     const {email, password, error, loading, message, showForm} = values;
 
     const handleSubmit = e => {
@@ -37,8 +40,10 @@ const SignupComponenet = () => {
     const handleChange = changedField => e => {
         setValues({ ...values, error:false, [changedField]: e.target.value});
     };
+
     const signupForm = () => {
         return(
+            showForm ?
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <input
@@ -58,12 +63,49 @@ const SignupComponenet = () => {
                 <div>
                     <button className="btn btn-primary">Signup</button>
                 </div>
-            </form>
-        )
-    }
+            </form> : '')
+    };
+
+    const showLoading = (props) => {
+        return (
+            loading ?
+        <div>
+            <Alert color="info">
+                Loading...
+            </Alert>
+            </div>
+                : '')
+    };
+
+    const showError = (props) => {
+        return (
+            error ?
+                <div>
+                    <Alert color="danger">
+                        {error}
+                    </Alert>
+                </div>
+                : '')
+    };
+
+    const showMessage = (props) => {
+        return (
+            message ?
+                <div>
+                    <Alert color="success">
+                        {message}
+                    </Alert>
+                </div>
+                : '')
+    };
 
     return (
-        <React.Fragment>{signupForm()}</React.Fragment>
+        <React.Fragment>
+            {showLoading()}
+            {showError()}
+            {showMessage()}
+            {signupForm()}
+        </React.Fragment>
     )
 };
 

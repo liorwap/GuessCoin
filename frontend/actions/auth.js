@@ -11,4 +11,5 @@ export const signup = (user) => {
         body: JSON.stringify(user)
     })
         .then(response => {return response.json();})
+        .catch(error => console.log(error));
 };
