@@ -3,9 +3,8 @@ import React from 'react'
 const Layout = ({children}) => {
     return (
         <React.Fragment>
-            <Header />
+            <Header/>
             {children}
-            <p>footer</p>
         </React.Fragment>
     );
 };
