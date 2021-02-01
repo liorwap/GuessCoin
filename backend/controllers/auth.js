@@ -20,7 +20,7 @@ exports.signup = (req, res) => {
             })
         }
         return res.json({
-            user: success
+            message: "Signup success! Please login."
         })
     })
 

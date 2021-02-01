@@ -27,10 +27,10 @@ app.use(morgan("dev"))
 app.use(bodyParser.json())
 app.use(cookieParser())
 
-if(process.env.NODE_ENV === 'development')
-{
-    app.use(cors({origin: process.env.CLIENT_URL}))
-}
+// if(process.env.NODE_ENV === 'development')
+// {
+app.use(cors({origin: process.env.CLIENT_URL}))
+// }
 
 // Routes
 app.use('/api', authRoutes)
