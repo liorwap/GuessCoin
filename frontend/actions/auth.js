@@ -58,7 +58,7 @@ export const removeCookie = key => {
 
 export const getCookie = key => {
     if(process.browser) {
-        cookie.get(key);
+        return cookie.get(key);
     }
 }
 
