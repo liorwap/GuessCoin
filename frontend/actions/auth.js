@@ -28,6 +28,19 @@ export const login = (user) => {
         .catch(error => console.log(error));
 };
 
+export const logout = (user, next) => {
+    removeCookie('token');
+    removeLocalStorage('user');
+    next();
+    return fetch(API + '/logout', {
+        method : 'GET'
+    })
+        .then(response => {
+            console.log("some response like logout successfully")
+        })
+        .catch(error => console.log(error));
+}
+
 export const setCookie = (key, value) => {
     if(process.browser)
     {
