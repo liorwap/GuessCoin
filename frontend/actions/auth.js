@@ -61,3 +61,26 @@ export const removeLocalStorage = (key, value) => {
     }
 }
 
+//authenticates user by passing data to local storage and cookie
+export const authenticate = (data, next) => {
+    setCookie('token', data.token);
+    setLocalStorage('user', data.user);
+    next();
+}
+
+export const isAuthenticated = () => {
+    if(process.browser) {
+        const cookieIsChecked = getCookie('token');
+        if(cookieIsChecked) {
+            const userIsChecked = localStorage.getItem('user');
+            if(userIsChecked) {
+                return JSON.parse(userIsChecked);
+            } else {
+                return false;
+            }
+        }
+    }
+}
+
+
+
