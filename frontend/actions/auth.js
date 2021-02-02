@@ -32,7 +32,7 @@ export const setCookie = (key, value) => {
     if(process.browser)
     {
         cookie.set(key, value, {
-            expires: '1d'
+            expires: 1
         });
     }
 };
